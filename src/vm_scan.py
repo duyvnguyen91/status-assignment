@@ -38,19 +38,8 @@ def vm_scan():
     # Getting App Test IP
     if data[i]['NodeMeta']['env'] == 'app' and data[i]['NodeMeta']['stage'] == 'test':
       app_test_ip.append(data[i]['Address'])
-  print("Metrics Prod IP")
-  print(metrics_prod_ip)
-  print("Metrics Test IP")
-  print(metrics_test_ip)
-  print("Logs Prod IP")
-  print(logs_prod_ip)
-  print("Logs Test IP")
-  print(logs_test_ip)
-  print("Backup Prod IP")
-  print(backup_prod_ip)
-  print("Backup Test IP")
-  print(backup_test_ip)
-  print("App Prod IP")
-  print(app_prod_ip)
-  print("App Test IP")
-  print(app_test_ip)
+  all_ip = metrics_prod_ip + metrics_test_ip + logs_prod_ip + logs_test_ip + backup_prod_ip + backup_test_ip + app_prod_ip + app_test_ip
+  
+  return [all_ip, metrics_prod_ip, metrics_test_ip, logs_prod_ip, logs_test_ip, backup_prod_ip, backup_test_ip, app_prod_ip, app_test_ip]
+  
+  
