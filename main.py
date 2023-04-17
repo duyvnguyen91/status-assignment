@@ -17,17 +17,23 @@ def main():
   
   # Applying rule for app_prod_ip 
   for host in app_prod_ip:
-    add_firewall_rule("Allow Node Exporter", host, metrics_prod_ip, 9104)
-    add_firewall_rule("Allow Node Exporter", host, metrics_test_ip, 9104)
-    add_firewall_rule("Allow Node Exporter", host, backup_prod_ip, 3306)
-    add_firewall_rule("Allow Node Exporter", host, backup_test_ip, 3306)
+    add_firewall_rule("Allow Mysql Exporter", host, metrics_prod_ip, 9104)
+    add_firewall_rule("Allow Mysql Exporter", host, metrics_test_ip, 9104)
+    add_firewall_rule("Allow Database", host, backup_prod_ip, 3306)
+    add_firewall_rule("Allow Database", host, backup_test_ip, 3306)
 
   # Applying rule for app_test_ip 
   for host in app_test_ip:
-    add_firewall_rule("Allow Node Exporter", host, metrics_prod_ip, 9104)
-    add_firewall_rule("Allow Node Exporter", host, metrics_test_ip, 9104)
-    add_firewall_rule("Allow Node Exporter", host, backup_prod_ip, 3306)
-    add_firewall_rule("Allow Node Exporter", host, backup_test_ip, 3306)
+    add_firewall_rule("Allow Mysql Exporter", host, metrics_prod_ip, 9104)
+    add_firewall_rule("Allow Mysql Exporter", host, metrics_test_ip, 9104)
+    add_firewall_rule("Allow Database", host, backup_prod_ip, 3306)
+    add_firewall_rule("Allow Database", host, backup_test_ip, 3306)
+
+  # for host in test_host:
+  #   add_firewall_rule("Allow Logstash", host, ['0.0.0.0/0'], 5141)
+  #   add_firewall_rule("Allow Node Exporter", host, metrics_prod_ip, 9100)
+  #   add_firewall_rule("Allow Mysql Exporter", host, metrics_test_ip, 9104)
+  #   add_firewall_rule("Allow Database", host, backup_prod_ip, 3306)
 
 if __name__ == "__main__":
   main()
