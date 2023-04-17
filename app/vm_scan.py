@@ -1,6 +1,6 @@
 import json
 
-with open('../data/services.json') as f:
+with open('data/services.json') as f:
   data = json.load(f)
 
 metrics_prod_ip = []
