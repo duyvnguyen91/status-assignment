@@ -2,12 +2,13 @@ import paramiko
 import traceback
 import time
 import datetime
-
-key = paramiko.RSAKey.from_private_key_file("/Users/duyvnguyen/.ssh/duynv-test.pem")
-now = datetime.datetime.now()
-username = "ec2-user"
+from app.config import Config, log
 
 def add_firewall_rule(comment, host, src_hosts, port):
+  config = Config()
+  key = paramiko.RSAKey.from_private_key_file(config.key_path)
+  username = config.username
+  
   str_src_hosts = ','.join(src_hosts)
   check_rule = "sudo iptables -C INPUT -s {} -p tcp --dport {} -j ACCEPT".format(str_src_hosts, port) + " -m comment --comment " + '"' + comment + '"' + "||"
   rule = "sudo iptables -A INPUT -s {} -p tcp --dport {} -j ACCEPT".format(str_src_hosts, port) + " -m comment --comment " + '"' + comment + '"'
